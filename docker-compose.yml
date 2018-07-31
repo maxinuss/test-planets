@@ -1,0 +1,39 @@
+version: '2'
+services:
+  nginx-planets-maxinuss:
+    image: nginx:latest
+    container_name: nginx-planets-maxinuss-container
+    ports:
+     - "8040:80"
+    volumes:
+     - ./:/var/www/html
+     - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    networks:
+     - maxinussnetwork
+  php-fpm-planets-maxinuss:
+    build: ./docker/php7.2
+    container_name: php-planets-maxinuss-container
+    volumes:
+     - ./:/var/www/html
+    networks:
+     - maxinussnetwork
+  mysql-planets-maxinuss:
+    image: mysql:5.7
+    container_name: mysql-planets-maxinuss-container
+    ports:
+     - "3380:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: testing_planets
+      MYSQL_PASSWORD: root
+    volumes:
+     - data:/var/lib/mysql
+     - ./docker/mysql/sql:/docker-entrypoint-initdb.d   
+    networks:
+     - maxinussnetwork
+networks:
+  maxinussnetwork:
+    driver: "bridge"
+volumes:
+  data:
+    driver: "local"

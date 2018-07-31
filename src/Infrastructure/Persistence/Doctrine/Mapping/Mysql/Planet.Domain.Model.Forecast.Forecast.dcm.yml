@@ -1,0 +1,25 @@
+Planet\Domain\Model\Forecast\Forecast:
+  type: entity
+  table: forecast
+
+  id:
+    id:
+      type: integer
+      length: 10
+      id: true
+      generator:
+        strategy: AUTO
+      options:
+        unsigned: true
+  fields:
+      day:
+        type: integer
+        column: user_name
+        length: 10
+        nullable: false
+
+      weather:
+        type: string
+        column: weather
+        length: 250
+        nullable: false
