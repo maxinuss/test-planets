@@ -73,7 +73,7 @@ make down
 Base url: ``` http://localhost:8040 ```
 
 ###### Get Forecast
-Get last 10 tweets from account. 
+Get forecast for specific day
 
 [GET] ``` /clima?dia=566 ```
 
